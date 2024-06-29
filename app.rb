@@ -47,3 +47,10 @@ post '/new' do
 	#erb :index ??????
   
 end
+
+get '/details/:post_id' do
+	post_id = params[:post_id]
+
+	erb "Displaying information for post with id #{post_id}"
+end
+
