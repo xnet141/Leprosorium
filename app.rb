@@ -14,7 +14,7 @@ before do
 end	
 
 configure do
-	init_db
+	init_db # before не работает в configure
 	@db.execute 'create table if not exists Posts 
 	(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,5 +33,11 @@ end
 	
 post '/new' do
   content = params[:content]
+
+  if content.length <= 0
+  	@error = 'Type post text'
+  	return erb :new
+	end
+
   erb "You typed #{content}"
 end
